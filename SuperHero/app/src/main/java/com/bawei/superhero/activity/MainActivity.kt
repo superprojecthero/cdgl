@@ -11,7 +11,7 @@ import com.bawei.superhero.fragment.LiveFragment
 import com.bawei.superhero.fragment.MusicFragment
 import com.bawei.superhero.fragment.VideoFragment
 import kotlinx.android.synthetic.main.activity_main.*
-
+//梁彤
 class MainActivity : AppCompatActivity(), BottomNavigationBar.OnTabSelectedListener {
    //初始化viewpager中的fragment
     var fraglist :Array<Fragment> = arrayOf(HomeFragment(),LiveFragment(),VideoFragment(),MusicFragment())
