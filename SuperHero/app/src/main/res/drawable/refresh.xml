@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false"
+    >
+    <item android:duration="300" android:drawable="@mipmap/pp_home_pull_refresh_2"/>
+    <item android:duration="300" android:drawable="@mipmap/pp_home_pull_refresh_3"/>
+    <item android:duration="300" android:drawable="@mipmap/pp_home_pull_refresh_4"/>
+    <item android:duration="300" android:drawable="@mipmap/pp_home_pull_refresh_5"/>
+    <item android:duration="300" android:drawable="@mipmap/pp_home_pull_refresh_6"/>
+    <item android:duration="300" android:drawable="@mipmap/pp_home_pull_refresh_7"/>
+
+</animation-list>
