@@ -1,5 +1,6 @@
 package com.bawei.superhero.mvp.model
 
+import android.content.Context
 import com.bawei.superhero.LiveTab
 import com.bawei.superhero.inter.RetrofitService
 import com.bawei.superhero.mvp.presenter.LivePresenter
@@ -12,10 +13,10 @@ import io.reactivex.schedulers.Schedulers
  * 2. @author chensi
  * 3. @date 2017/11/23 10:06
  */
-class LiveModel {
+class LiveModel (var context: Context){
     fun getLiveData(livePresenter: LivePresenter){
-        val retrofit = RetrofitUtils.getInstance("http://capi.douyucdn.cn/")
-        val service = retrofit?.create(RetrofitService::class.java)
+        val retrofit = RetrofitUtils.getInstance(context)
+        val service = retrofit?.create(RetrofitService::class.java,"http://capi.douyucdn.cn/")
         val liveData = service?.getLiveData()
         //请求直播页面的tablayout
         liveData?.subscribeOn(Schedulers.io())
