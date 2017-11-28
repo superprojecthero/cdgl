@@ -1,8 +1,10 @@
 package com.bawei.superhero.inter
 
-import com.bawei.superhero.LiveTab
+import com.bawei.superhero.bean.LiveData
+import com.bawei.superhero.bean.LiveTab
 import io.reactivex.Flowable
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 /**
  *  1. 类的用途
@@ -12,7 +14,15 @@ import retrofit2.http.GET
 interface RetrofitService {
     /**
      * 直播页面 tablayout
+     * http://open.douyucdn.cn/api/RoomApi/game
      */
-    @GET("api/v1/getColumnList?client_sys=android")
+    @GET("api/RoomApi/game")
     fun getLiveData():Flowable<LiveTab.DataBean>
+
+    /**
+     * 直播页面主体数据
+     * http://open.douyucdn.cn/api/RoomApi/live/lol
+     */
+    @GET("api/RoomApi/live/{game}")
+    fun getLive(@Path("game")string: String):Flowable<LiveData.DataBean>
 }

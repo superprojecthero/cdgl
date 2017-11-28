@@ -9,6 +9,8 @@
         android:layout_height="25dp"
         android:background="@color/itemselect"
         />
+        <!--android:background="@color/itemselect"-->
+
     <android.support.design.widget.TabLayout
         android:id="@+id/tab"
         android:layout_below="@+id/header"
@@ -22,9 +24,15 @@
         ></android.support.design.widget.TabLayout>
     <android.support.v4.view.ViewPager
         android:id="@+id/vp"
-        android:layout_below="@+id/tab"
+        android:layout_below="@id/tab"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="wrap_content"
+        >
     </android.support.v4.view.ViewPager>
+    <ImageView
+        android:id="@+id/ani"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerInParent="true"
+        />
 </RelativeLayout>
