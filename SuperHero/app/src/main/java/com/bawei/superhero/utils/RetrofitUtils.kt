@@ -2,16 +2,13 @@ package com.bawei.superhero.utils
 
 import android.content.Context
 import android.util.Log
-import com.bawei.superhero.inter.RetrofitService
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import okhttp3.Cache
 import okhttp3.OkHttpClient
-import okhttp3.internal.cache.CacheInterceptor
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
-import java.util.*
 import java.util.concurrent.TimeUnit
 
 
@@ -56,7 +53,6 @@ class RetrofitUtils (context: Context){
                 .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                 .writeTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                 .build()
-
     }
     companion object {
         @Volatile
@@ -86,5 +82,8 @@ class RetrofitUtils (context: Context){
         }
         return retrofit?.create(service)
     }
+
+
+
 
 }
