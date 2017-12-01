@@ -13,7 +13,11 @@ import io.reactivex.schedulers.Schedulers
  * 2. @author chensi
  * 3. @date 2017/11/23 10:06
  */
+<<<<<<< HEAD
 class LiveModel(var context: Context) {
+=======
+class LiveModel (var context: Context){
+>>>>>>> b78d1fd2d756ddf10daf956980fa453938b24e93
     fun getLiveData(livePresenter: LivePresenter){
         val retrofit = RetrofitUtils.getInstance(context)
         val service = retrofit?.create(RetrofitService::class.java,"http://capi.douyucdn.cn/")
