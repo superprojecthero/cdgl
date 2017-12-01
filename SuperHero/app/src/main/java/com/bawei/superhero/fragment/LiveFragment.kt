@@ -42,13 +42,19 @@ class LiveFragment : Fragment(),LiveView{
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        ImmersionBar.with(activity).init()
         val inflate = inflater?.inflate(R.layout.livefragment, container, false)
+<<<<<<< HEAD
         ImmersionBar.with(activity).init();
         tab = inflate?.findViewById(R.id.tab) as TabLayout
         vp = inflate?.findViewById(R.id.vp) as ViewPager
         ani=inflate?.findViewById(R.id.ani) as ImageView
         tab?.tabMode=TabLayout.MODE_SCROLLABLE
 
+=======
+        val tab = inflate?.findViewById(R.id.tab) as TabLayout
+        tab.tabMode=TabLayout.MODE_SCROLLABLE
+>>>>>>> b78d1fd2d756ddf10daf956980fa453938b24e93
         return inflate
     }
 
