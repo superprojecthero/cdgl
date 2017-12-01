@@ -60,15 +60,7 @@
         android:layout_marginBottom="130dp"
         android:layout_marginLeft="20dp"
         />
-    <com.bwie.coolmusic.view.CircleProgressView
-        android:id="@+id/cpv"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="130dp"
-        android:layout_marginLeft="20dp"
-        android:visibility="gone"
-        />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="150dp"
@@ -145,11 +137,5 @@
         android:layout_marginTop="100dp"
         android:visibility="gone"
         />
-    <com.bawei.superhero.view.LrcView
-        android:id="@+id/lrc"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="70dp"
-        android:layout_marginBottom="160dp"
-         />
+
 </RelativeLayout>

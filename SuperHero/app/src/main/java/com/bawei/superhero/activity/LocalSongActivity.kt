@@ -11,13 +11,14 @@ import android.view.ViewGroup
 import android.widget.*
 import com.bawei.superhero.R
 import com.bawei.superhero.bean.Song
+import com.bawei.superhero.fragment.MusicFragment.Companion.mBinder
 import com.bawei.superhero.utils.MusicUtils
+import com.squareup.picasso.Picasso
+
 
 class LocalSongActivity : AppCompatActivity() {
 
     private var user: SharedPreferences? = null
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,8 +33,13 @@ class LocalSongActivity : AppCompatActivity() {
         user = getSharedPreferences("user", Context.MODE_PRIVATE)
 
         //开始查询本地音乐
-        val musicList = MusicUtils.getMusicList(this) as MutableList<Song>?
+        val musicList = MusicUtils.getMusicList(this) as MutableList<Song>
         song_lv.adapter=MyListAdapter(musicList,this)
+
+        //点击条目跳转
+        song_lv.setOnItemClickListener { parent, view, position, id ->
+            mBinder?.musicplay(musicList?.get(position)?.path)
+        }
 
         back.setOnClickListener(View.OnClickListener {
             finish()
@@ -41,7 +47,10 @@ class LocalSongActivity : AppCompatActivity() {
 
 
     }
-  //listview的适配器
+
+
+
+    //listview的适配器
     internal class MyListAdapter(var list:MutableList<Song>?,var context: Context) : BaseAdapter() {
       override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
           var viewholder=ViewHolder()
@@ -58,7 +67,13 @@ class LocalSongActivity : AppCompatActivity() {
           }
           viewholder.song_graic?.setText(list?.get(position)?.song)
           viewholder.song_name?.text=list?.get(position)?.singer
+          var albumArt = MusicUtils.getAlbumArt(list?.get(position)?.album_id, context)
 
+          if(albumArt == null){
+              viewholder.song_image?.setImageResource(R.mipmap.a8z)
+          }else{
+              Picasso.with(context).load(albumArt).into(viewholder.song_image)
+          }
          return inflate
       }
 

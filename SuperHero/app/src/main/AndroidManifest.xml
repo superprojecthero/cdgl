@@ -21,14 +21,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
         <activity android:name=".activity.LiveActivity"></activity>
-=======
         <activity android:name=".activity.FindActivity" />
         <activity android:name=".activity.LocalSongActivity" />
         <activity android:name=".activity.DetailActivity2"></activity>
         <service android:name=".MyService"/>
->>>>>>> b78d1fd2d756ddf10daf956980fa453938b24e93
     </application>
 
 </manifest>

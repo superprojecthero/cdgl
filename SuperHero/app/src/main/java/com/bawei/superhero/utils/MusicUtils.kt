@@ -56,6 +56,8 @@ object MusicUtils {
         return slist
     }
 
+
+
     /**
      * 定义一个方法用来格式化获取到的时间
      */
@@ -70,7 +72,7 @@ object MusicUtils {
     }
 
     //根据album_id查找专辑图片
-    fun getAlbumArt(album_id: String, context: Context): String? {
+    fun getAlbumArt(album_id: String?, context: Context): String? {
         val mUriAlbums = "content://media/external/audio/albums"
         val projection = arrayOf("album_art")
         var cur = context.contentResolver.query(
