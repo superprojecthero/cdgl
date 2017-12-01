@@ -32,16 +32,14 @@ class RoundTransform(private val radius: Int//圆角值
         paint.shader = BitmapShader(source, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP)
         //画圆角背景
         val rectF = RectF(Rect(0, 0, width, height))//赋值
-        canvas.drawRoundRect(rectF, radius.toFloat(), radius.toFloat(), paint)//画圆角矩形
-        //
+        canvas.drawRoundRect(rectF, radius.toFloat(), radius.toFloat(), paint)
+        //画圆角矩形
         paint.isFilterBitmap = true
         paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
         canvas.drawBitmap(source, 0f, 0f, paint)
         source.recycle()//释放
-
         return bitmap
     }
-
     override fun key(): String {
         return "round : radius = " + radius
     }

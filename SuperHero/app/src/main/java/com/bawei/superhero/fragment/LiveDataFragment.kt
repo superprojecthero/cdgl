@@ -1,6 +1,7 @@
 package com.bawei.superhero.fragment
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
@@ -12,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bawei.superhero.R
+import com.bawei.superhero.activity.LiveActivity
 import com.bawei.superhero.mvp.presenter.LivePresenter
 import com.bawei.superhero.mvp.view.LiveData
 import com.bawei.superhero.utils.RoundTransform
@@ -30,7 +32,9 @@ class LiveDataFragment : Fragment() ,LiveData{
         rlv?.adapter=adapter
         adapter.setClick(object :MyRecyclerView.OnClick{
             override fun SetOnClick(position: Int, liveData: com.bawei.superhero.bean.LiveData.DataBean) {
-
+                val intent = Intent(activity, LiveActivity::class.java)
+                intent.putExtra("url",liveData.data.get(position).url)
+                startActivity(intent)
             }
         })
     }
