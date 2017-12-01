@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TableLayout
 import com.bawei.superhero.LiveTab
 import com.bawei.superhero.R
 import com.bawei.superhero.mvp.presenter.LivePresenter
@@ -29,13 +28,14 @@ class LiveFragment : Fragment(),LiveView{
         val inflate = inflater?.inflate(R.layout.livefragment, container, false)
         ImmersionBar.with(activity).init();
         val tab = inflate?.findViewById(R.id.tab) as TabLayout
+
         tab.tabMode=TabLayout.MODE_SCROLLABLE
         return inflate
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val livePresenter = LivePresenter(this)
+        val livePresenter = LivePresenter(this,activity)
         livePresenter.getLiveModel()
     }
 }
