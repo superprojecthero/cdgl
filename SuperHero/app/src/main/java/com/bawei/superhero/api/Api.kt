@@ -7,5 +7,6 @@ class Api {
     companion object {
 
         val VIDEO_URL: String = "http://baobab.kaiyanapp.com/api/"
+        val VIDEO_URL1:String ="http://route.showapi.com/"
     }
 }

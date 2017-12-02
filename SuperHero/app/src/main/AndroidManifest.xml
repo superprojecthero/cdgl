@@ -21,6 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.LiveActivity"></activity>
         <activity android:name=".activity.FindActivity" />
         <activity android:name=".activity.LocalSongActivity" />
         <activity android:name=".activity.DetailActivity2"></activity>

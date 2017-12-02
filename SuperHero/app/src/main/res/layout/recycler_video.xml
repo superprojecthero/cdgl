@@ -5,11 +5,9 @@
     android:layout_height="wrap_content">
     <cn.jzvd.JZVideoPlayerStandard
         android:id="@+id/vide_video"
-        android:background="#f22"
         android:layout_width="match_parent"
         android:layout_height="200dp"></cn.jzvd.JZVideoPlayerStandard>
     <RelativeLayout
-        android:background="#22f"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView

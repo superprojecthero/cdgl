@@ -42,20 +42,17 @@ dependencies {
     compile 'com.gyf.barlibrary:barlibrary:2.1.4'
     compile 'com.dou361.ijkplayer:jjdxm-ijkplayer:1.0.5'
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
-<<<<<<< HEAD
+
     compile 'com.youth.banner:banner:1.4.9'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.android.support:recyclerview-v7:23.2.0'
-=======
-<<<<<<< HEAD
+    testCompile 'junit:junit:4.12'
+    compile 'cn.jzvd:jiaozivideoplayer:6.0.0'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     testCompile 'junit:junit:4.12'
-=======
 
     compile 'cn.jzvd:jiaozivideoplayer:6.0.0'
 
->>>>>>> 2b37b975307c003ab057d96dd8091b0a38c77769
->>>>>>> b78d1fd2d756ddf10daf956980fa453938b24e93
 }
 repositories {
     mavenCentral()

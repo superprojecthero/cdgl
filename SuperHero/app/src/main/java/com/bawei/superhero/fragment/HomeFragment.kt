@@ -9,8 +9,8 @@ import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.bawei.superhero.LiveTab
 import com.bawei.superhero.R
+import com.bawei.superhero.bean.LiveTab
 import com.bawei.superhero.mvp.presenter.LivePresenter
 import com.bawei.superhero.mvp.view.LiveView
 import com.gyf.barlibrary.ImmersionBar
@@ -22,9 +22,9 @@ import kotlinx.android.synthetic.main.homefragment.*
 class HomeFragment : Fragment(),LiveView {
     override fun getLive(liveTab: LiveTab.DataBean) {
         liveTab.data.forEach {
-            tablay.addTab(tablay.newTab().setText(it.cate_name))
+            tablay.addTab(tablay.newTab().setText(it.game_name))
         }
-        pager.adapter=MyAdapter(activity.supportFragmentManager,liveTab)
+        pager.adapter=MyAdapter(childFragmentManager,liveTab)
         tablay.setupWithViewPager(pager)
 
     }
@@ -53,7 +53,7 @@ class HomeFragment : Fragment(),LiveView {
          }
 
          override fun getPageTitle(position: Int): CharSequence {
-             return liveTab.data.get(position).cate_name
+             return liveTab.data.get(position).game_name
          }
          override fun getCount(): Int {
              return liveTab.data.size
