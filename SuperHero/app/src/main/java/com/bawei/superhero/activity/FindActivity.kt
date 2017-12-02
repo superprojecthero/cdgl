@@ -4,8 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.os.Handler
-import android.os.Message
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
@@ -19,17 +17,16 @@ import com.bawei.superhero.bean.HttpSong
 import com.bawei.superhero.bean.Song
 import com.bawei.superhero.inter.RetrofitService
 import com.bawei.superhero.utils.RetrofitUtils
-import com.google.gson.Gson
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_find.*
 import java.io.Serializable
 import java.util.*
 
 class FindActivity : AppCompatActivity() {
 
-    private var slist: List<Song>? = null
+    var slist: MutableList<Song>? = null
     private var query_text: TextView? = null
+    var find_lv:ListView?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,10 +34,9 @@ class FindActivity : AppCompatActivity() {
 
         var back = findViewById(R.id.back_find) as ImageView
         var edit_query = findViewById(R.id.edit_query) as EditText
-        var find_lv = findViewById(R.id.find_lv) as ListView
+        find_lv = findViewById(R.id.find_lv) as ListView
 
         slist = ArrayList()
-
 
         back.setOnClickListener(View.OnClickListener {
             finish()
@@ -92,51 +88,36 @@ class FindActivity : AppCompatActivity() {
                 ?.observeOn(AndroidSchedulers.mainThread())
                 ?.subscribe { song: HttpSong ->
                     val contentlist = song.showapi_res_body?.pagebean?.contentlist as MutableList<HttpSong.ShowapiResBodyBean.PagebeanBean.ContentlistBean>
-                    find_lv.adapter=MyListAdapter(contentlist,this)
+                    find_lv?.adapter=MyListAdapter(contentlist,this)
+                    handle(contentlist)
                 }
     }
-
-
-
-    //接受数据
-    internal var handler: Handler = object : Handler() {
-        override fun handleMessage(msg: Message) {
-            super.handleMessage(msg)
-            if (msg.what == 0) {
-                val s = msg.obj.toString()
-                val gson = Gson()
-                val hs = gson.fromJson(s, HttpSong::class.java)
-                val showapi_res_body = hs.showapi_res_body
-                val pagebean = showapi_res_body!!.pagebean
-                val contentlist = pagebean!!.contentlist
-                if (contentlist != null && contentlist!!.size > 0) {
-                    for (i in contentlist!!.indices) {
-                        val song = Song()
-                        song.isplay = false
-                        song.album = contentlist!!.get(i).albumname!!
-                        song.album_id = contentlist!!.get(i).albumpic_big!!
-                        song.path = contentlist!!.get(i).m4a!!
-                        song.singer = contentlist!!.get(i).singername!!
-                        song.song = contentlist!!.get(i).songname!!
-                        song.duration = contentlist!!.get(i).songid//网络音乐的id
-                        song.downUrl = contentlist!!.get(i).downUrl!!
-                        //slist.add(song)
-                    }
-                    //点击事件
-                    find_lv.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
-                        val intent = Intent(this@FindActivity, DetailActivity2::class.java)
-                        intent.putExtra("songs", slist as Serializable)
-                        //传过去一个标识 分别到底是本地音乐还是网络音乐
-                        intent.putExtra("isHttp", false)
-                        intent.putExtra("posotion", position)
-                        startActivity(intent)
-                    }
-                }
-
-
-            }
-        }
+            //接受数据
+              fun handle(contentlist :MutableList<HttpSong.ShowapiResBodyBean.PagebeanBean.ContentlistBean> ) {
+                  if (contentlist != null && contentlist.size > 0) {
+                      for (i in contentlist.indices) {
+                          var song = Song()
+                          song.isplay = false
+                          song.album = contentlist.get(i).albumname!!
+                          //song.album_id = contentlist.get(i).albumpic_big!!
+                          song.path = contentlist.get(i).m4a!!
+                          song.singer = contentlist.get(i).singername!!
+                          song.song = contentlist.get(i).songname!!
+                          song.duration = contentlist.get(i).songid//网络音乐的id
+                          song.downUrl = contentlist.get(i).downUrl!!
+                          slist?.add(song)
+                      }
+                      //点击事件
+                      find_lv?.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+                          val intent = Intent(this@FindActivity, DetailActivity2::class.java)
+                          intent.putExtra("songs", slist?.get(position) as Serializable)
+                          startActivity(intent)
+                      }
+              }else{
+                      Toast.makeText(this,"空空",0).show()
+                  }
     }
+
     //listview的适配器
     internal class MyListAdapter(var list:MutableList<HttpSong.ShowapiResBodyBean.PagebeanBean.ContentlistBean>,var context: Context) : BaseAdapter() {
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
